@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+        *{
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+          body{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+h1{
+  font-size: 4vw;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 1.5%;
+  text-shadow: 2px 2px grey;
+  /* height: 100px; */
+  margin-bottom: 30px;
+  /* background-color: grey; */
+}
+.Heading{
+  background-color: grey;
+  margin-top: -5px;
+}
+
+h2 {
+  margin-left: 5%;
+  font-size: 2vw;
+  text-shadow: .5px .5px grey;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+input {
+
+  margin-left: 42.5%;
+  margin-right: 42.5%;
+  width: 15%;
+    transition: all .5s linear;
+}
+
+#coin_fall{
+  animation: coin_fall 4s infinite;
+  position: fixed;
+}
+
+
+#falling_coin {
+  width: 100px;
+  animation: infinite-spinning 4s infinite;
+  margin: 0;
+}
+
+@keyframes coin_fall {
+  0% {
+       transform: translate(0px, -20%);
+
+   }
+
+   100% {
+       transform: translate(0px, 1000%);
+   }
+}
+
+#div{
+  margin: 0;
+}
+/*  */
+
+
+
+#coin:active{
+  transform: rotateX(1800deg) scale(4);
+}
+
+#head_win{
+    margin-top: 50px;
+
+}
+.instruction{
+  margin-left: 370px;
+}
+footer{
+ margin-top: 1382px;
+ text-align: center;
+height: 30px;
+ background-color: black;
+ color: white;
+ align-content: center;
+ align-items: center;
+ line-height: 30px;
+}
+
+#textone{
+                margin-left: 130px;
+                padding: 6px;
+          }
+          #textTWO{
+              padding: 6px;
+              margin-left: 20px;
+              margin-right: 18px;
+          }
+          button{
+              padding: 10px 80px;
+              border-radius: 3px;
+              border: 1px solid grey;
+              margin-left: 380px;
+              background-color: rgb(39, 192, 39);
+              margin-right: -70px;
+              margin-bottom: 14px;
+
+            }
+            button:hover{
+              background-color: green;
+              cursor: pointer;
+              
+          }
+          /* result */
+          #spanResult{
+              margin-left: 290px;
+              margin-top: 1000px;
+              
+              padding :10px 0 20px 20px ;
+            }
+            /* write */
+            #spanResult p{
+              margin-left: 500px;
+            }
+            /* result */
+            #spanResult1{
+              margin-left:390px;
+              
+            }
+            /* write */
+            #spanResult1 p{
+            margin-left: 500px;
+
+          }
+          .adjust{
+            margin-left: -100px;
+          }
+
+          
+</style>
+
+    <title>FLIP COIN  | GANESH BHISE</title>
+    <meta charset="utf-8">
+    <link href="styles/coin_flip.css" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  </head>
+  <body>
+    
+</div>
+<h1 class="Heading">TOSS APP BY GANESH BHISE</h1>
+<p class="instruction">Press On the coin to flip a coin</p>
+
+<div id="head_win"></div>
+<div id="tail_win"></div>
+
+    <input id="coin" type="image" src="heads.png" onclick="coinFlip();play(); "/>
+    <h1 id="winner"></h1>
+    <h1 id="final_winner"></h1>
+
+    <div class="inputn">
+
+      <input type="text" placeholder="  CAPTAIN OF TEAM 1" id="textone" />
+      <input type="text" placeholder=" CAPTAIN OF TEAM 2" id="textTWO" />
+      
+      <div>
+          <br>
+        </div>
+        
+        <button  onclick="testVariable()">Add Captains</button>
+        <button onclick="get()">Match Details</button>
+        
+        <div>
+          <br>
+        </div>
+        <hr>
+        <br><br><br>
+        <div class="adjust">
+
+          <span id="spanResult">
+              <p>Name Of The captains</p>
+          </span>
+          <br>
+          <span id="spanResult1">
+              <p>Match Details</p>
+          </span>
+        </div>
+    
+    <audio id="audio" src="coin_toss.wav"></audio>
+    
+    <script>
+
+      // JS FOR FORM
+      function testVariable() {
+        var strText = document.getElementById("textone").value;          
+        var strText1 = document.getElementById("textTWO").value;
+        var result = "TEAM 1 CAPTAINS IS " + " " + strText +" " + " AND TEAM 2 CAPTAIN IS " + " " + strText1 + " " +"RESPECTIVELY";
+        document.getElementById('spanResult').textContent = result ;
+
+        if(result!=0){
+
+            alert('CAPTAINS ADDED ');
+        }
+        else{
+            alert('PLEASE ADD CAPTAINS');
+        }
+         }
+
+         function get(){
+           var m1 = document.getElementById("textone").value;
+           var m2 = document.getElementById("textTWO").value;
+           var r2 = "TODAY`S MATCH IS BETWEEN " + " "+ m1+ " " + "VS" + " " + m2;
+           document.getElementById('spanResult1').textContent = r2 ;
+
+         }
+
+var heads_wins = [];
+var tails_wins = [];
+
+function play(){
+       var audio = document.getElementById("audio");
+       audio.play();
+}
+
+function coinFlip() {
+		function flip(){
+				return Math.floor((Math.random() * 2) + 1)
+		}
+		var result = flip();
+		if (result === 1){
+				document.getElementById("coin").src="heads.png";
+				winner = `HEADS`;
+				head_win = heads_wins.push(result);
+        document.getElementById("head_win").innerText = head_win;
+		} else if (result === 2) {
+				document.getElementById("coin").src="tails.png";
+				winner = `TAILS`;
+			  tail_win = `${tails_wins.push(result)}`;
+        document.getElementById("tail_win").innerText = tail_win;
+		}
+		document.getElementById("winner").innerText = winner;
+	}
+
+
+    </script>
+    <footer>COPYRIGHT &copy || Ganesh Bhise|| 2022</footer>
+  </body>
+</html>
