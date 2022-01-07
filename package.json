@@ -8,10 +8,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "homepage": "https://github.com/Ganeshbhise/Flip-a-coin"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/Ganeshbhise/Flip-a-coin"
+  "license": "ISC"
+  
 }
